@@ -16,18 +16,24 @@ const btnStop = document.getElementById("btn-stop");
 
 let intervalID;
 const startChangingColor = function () {
-    intervalID = setInterval(changBgAuto, 500);
+  // ? NULL safety check
+    if (!intervalID) {
+      intervalID = setInterval(changBgAuto, 500);
+    }
+
+
 function changBgAuto() {
     const boxBody = document.getElementById('color-box');
     boxBody.style.backgroundColor = randomColor();
-    // ! MY LOGIC
+
     const p = document.getElementById('color-box');
     p.innerText = randomColor();
 }
 
 };
 const stopChangingColor = function () {
-    clearInterval(intervalID)
+    clearInterval(intervalID);
+    intervalID = null;
 };
 
 btnStart.addEventListener("click", startChangingColor);
